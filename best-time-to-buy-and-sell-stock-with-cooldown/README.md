@@ -1,4 +1,3 @@
-
 [Discussion Post (created on 10/6/2021 at 0:56)](https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-cooldown/discuss/1327431/100-c%2B%2B-or-Top-Down)  
 <h2>309. Best Time to Buy and Sell Stock with Cooldown</h2><h3>Medium</h3><hr><div><p>You are given an array <code>prices</code> where <code>prices[i]</code> is the price of a given stock on the <code>i<sup>th</sup></code> day.</p>
 
