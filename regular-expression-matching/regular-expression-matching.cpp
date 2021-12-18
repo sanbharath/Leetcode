@@ -15,7 +15,6 @@ public:
         
     }
     
-    
     bool check(int i,int j,string source,string pattern){
         
         if(dp[i][j]!=-1){
@@ -27,44 +26,24 @@ public:
 
         if((i >= source.size()) && (j >= pattern.size())){
             return dp[i][j] = 1;
-            /*
-            
-            if(j >= pattern.size() || (pattern[j] == '*' && (j+1 == pattern.size()))){
-                return dp[i][j] = 1;
-            }
-            else{
-                return dp[i][j] = 0;
-            }
-            */
-            
         }
         
         if(j >= pattern.size())
             return dp[i][j] = 0;
         
-        
-        if(pattern[j] == '*')
-            return dp[i][j] = check(i,j+1,source,pattern);
-        
+        // Next character in patter is a star
         
         if((j+1 < pattern.size()) && pattern[j+1] == '*'){
             
             bool res1 = 0;
             bool res2 = 0;
-            bool res3 = 0;
             
-            
-            res1 = check(i, j+1, source, pattern);
-            
+            res1 = check(i, j+2, source, pattern);
             if(compare(i,j,source,pattern)){
-                
                 res2 = check(i+1, j, source, pattern);
-                    
-                res3 = check(i+1, j+1, source, pattern);
-                
             }
             
-            return dp[i][j] = (res1 || res2 || res3);
+            return dp[i][j] = (res1 || res2 );
         }
         else{
             
