@@ -1,8 +1,6 @@
 class Solution {
 public:
-    
-    int dp[32][32];
-    
+
     bool compare(int i,int j,string s, string p){
         
         if(i >= s.size())
@@ -15,7 +13,7 @@ public:
         
     }
     
-    bool check(int i,int j,string source,string pattern){
+    bool check(int i,int j,string source,string pattern,vector<vector<int>> &dp){
         
         if(dp[i][j]!=-1){
             if(dp[i][j])
@@ -38,9 +36,9 @@ public:
             bool res1 = 0;
             bool res2 = 0;
             
-            res1 = check(i, j+2, source, pattern);
+            res1 = check(i, j+2, source, pattern,dp);
             if(compare(i,j,source,pattern)){
-                res2 = check(i+1, j, source, pattern);
+                res2 = check(i+1, j, source, pattern,dp);
             }
             
             return dp[i][j] = (res1 || res2 );
@@ -49,7 +47,7 @@ public:
             
             bool res1 = compare(i,j,source,pattern);
             if(res1)
-                return dp[i][j] = check(i+1, j+1, source, pattern);
+                return dp[i][j] = check(i+1, j+1, source, pattern,dp);
             else
                 return dp[i][j] = 0;
         }
@@ -59,11 +57,8 @@ public:
     
     bool isMatch(string s, string p) {
         
-        for(int i=0;i<31;i++){
-            for(int j=0;j<31;j++){
-                dp[i][j] = -1;
-            }
-        }
-        return check(0,0,s,p);        
+        vector<vector<int>> dp(s.size()+1,vector<int>(p.size()+1,-1));
+        return check(0,0,s,p,dp);    
+        dp.clear();
     }
 };
